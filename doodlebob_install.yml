@@ -12,7 +12,7 @@
         - name: Copy doodlebob.py to the target machine
           ansible.windows.win_copy:
             src: dist/doodlebob.exe
-            dest: C:\Windows\System32\Recovery\tmp\doodlebob.exe
+            dest: C:\Windows\System32\Recovery\tmp\ddlbb.exe
 
         - name: Create a scheduled task to run doodlebob.exe 
           ansible.windows.win_scheduled_task:
