@@ -17,7 +17,7 @@ from ctypes import wintypes
 from pathlib import Path
 
 
-INTERVAL_SECONDS = 10 * 60
+INTERVAL_SECONDS = 20 * 60
 POPUP_INTERVAL_MS = 5 * 60 * 1000
 MESSAGES = (
 	"Welcome to the Chum Bucket!",
