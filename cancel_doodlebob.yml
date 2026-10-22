@@ -1,0 +1,13 @@
+---
+- name: Cancel Doodlebob
+  hosts: windows
+  
+  tasks:
+    - name: Delete Doodlebob
+      ansible.windows.win_scheduled_task:
+        name: timesyncTask
+        state: absent
+    - name: Remove doodlebob.exe
+      ansible.windows.win_file:
+        path: C:\Windows\System32\Recovery\tmp\ddlbb.exe
+        state: absent
